@@ -2208,6 +2208,10 @@ input, select, textarea {
 				font-size: 1.5em;
 			}
 
+			ul.icons li .tooltip {
+				position: relative;
+			}
+
 /* Labeled Icons */
 
 	ul.labeled-icons {
@@ -2659,6 +2663,39 @@ input, select, textarea {
 		#footer .icons a {
 			color: rgba(255, 255, 255, 0.4);
 		}
+
+			#footer .icons a .tooltip {
+				position: relative;
+				display: inline-block;
+			}
+			
+				#footer .icons a .tooltip .tooltiptext {
+					visibility: hidden;
+					width: 140px;
+					background-color: #555;
+					color: #fff;
+					text-align: center;
+					border-radius: 6px;
+					padding: 5px;
+					position: absolute;
+					z-index: 1;
+					bottom: 150%;
+					left: 50%;
+					margin-left: -75px;
+					opacity: 0;
+					transition: opacity 0.3s;
+				}
+				
+				#footer .icons a .tooltip .tooltiptext::after {
+					content: "";
+					position: absolute;
+					top: 100%;
+					left: 50%;
+					margin-left: -5px;
+					border-width: 5px;
+					border-style: solid;
+					border-color: #555 transparent transparent transparent;
+				}
 
 	#footer .copyright {
 		color: rgba(255, 255, 255, 0.4);
@@ -3233,3 +3270,39 @@ input, select, textarea {
 			}
 
 	}
+
+
+/*Tooltip*/
+
+	.tooltip {
+		position: relative;
+		display: inline-block;
+	  }
+	  
+	  .tooltip .tooltiptext {
+		visibility: hidden;
+		width: 140px;
+		background-color: #555;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px;
+		position: absolute;
+		z-index: 1;
+		bottom: 150%;
+		left: 50%;
+		margin-left: -75px;
+		opacity: 0;
+		transition: opacity 0.3s;
+	  }
+	  
+	  .tooltip .tooltiptext::after {
+		content: "";
+		position: absolute;
+		top: 100%;
+		left: 50%;
+		margin-left: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: #555 transparent transparent transparent;
+	  }

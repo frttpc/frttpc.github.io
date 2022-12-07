@@ -36,15 +36,16 @@
 							<article class="col-6 col-12-xsmall work-item">
 								<a class="image fit" style="max-width: 50%; height: auto;"><img src="images/TicTacToe Gameplay Demo.png" alt="" /></a>
 								<h3>TicTacToe with a Twist</h3>
-								<p style="margin: 0 0 1em 0 ;">This is my first independent local 2 player mobile game project that haevily works on UI. Simply tictactoe with rounds and a different rule.</p>
+								<p style="margin: 0 0 1em 0 ;">This is my first independent local 2-player mobile game project that haevily works on UI. Simply tictactoe with rounds and a different rule.</p>
 								<ul class="actions">
 									<li><a href="https://github.com/frttpc/TicTacToe-Prototype" class="button">Go to Repository</a></li>
 								</ul>
 							</article>
 							<article class="col-6 col-12-xsmall work-item">
-								<a class="image fit thumb"><img src="images/" alt="" /></a>
+								<a class="image fit" ><img src="images/2D Prot.png" alt="" /></a>
 								<h3>2D Top Down Shooter Prototype</h3>
-								<p style="margin: 0 0 1em 0 ;">My first attempt on learning and implementing top down shooter mechanics with 2D lights, aiming, cinemachine and more on a inheretance nad singleton based game design pattern. </p>
+								<p style="margin: 0 0 1em 0 ;">My first attempt on learning and implementing top down shooter mechanics with 2D lights, aiming, cinemachine and more on a inheretance and 
+									singleton based game design pattern with a little bit of fear elements in it. </p>
 								<ul class="actions">
 									<li><a href="https://github.com/frttpc/2D-Shooter-Prototype" class="button">Go to Repository</a></li>
 								</ul>
@@ -55,7 +56,9 @@
 				<!-- Three -->
 					<section id="three">
 						<h2>Get In Touch</h2>
-						<p>Please leave you name, email address and you message so that I can return back to you as soon as I can. Or you can copy my email address by clicking on <a onclick="" class="icon solid fa-envelope" style="color: rgb(71, 71, 71); margin: 0 0.5em 0 0.5em;"></a> icon. </p>
+						<p>Please leave you name, email address and you message so that I can return back to you as soon as I can. Or you can copy my email address by clicking on 
+							<a onclick="CopyMail()" class="icon solid fa-envelope" style="color: rgb(71, 71, 71); margin: 0 0.5em 0 0.5em;">
+							</a> icon. </p>
 						<div class="row">
 							<div class="col-12 col-12-small">
 								<form method="post" action="#">
@@ -67,13 +70,6 @@
 								</form>
 								<ul class="actions">
 									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div>
-							<div class="col-4 col-12-small">
-								<ul class="labeled-icons">
-									<li>
-
-									</li>
 								</ul>
 							</div>
 						</div>
@@ -405,7 +401,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 					<ul class="icons">
 						<li><a href="https://github.com/frttpc" target="_blank" class="icon brands fa-github"></a></li>
 						<li><a href="https://www.linkedin.com/in/f%C4%B1rat-topcu/" target="_blank" class="icon brands fa-linkedin"></a></li>
-						<li><a onclick="" href="#" class="icon solid fa-envelope"></a></li>
+						<li class="tooltip"><a onclick="CopyMail()" class="icon solid fa-envelope tooltiptext"></a></li>
 					</ul>
 					<ul class="copyright">
 						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
@@ -420,6 +416,16 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+			<script>
+			function CopyMail() {
+				var mail = "frttpc97@gmail.com";
+				navigator.clipboard.writeText(mail);
+			  
+				// Alert the copied text
+				alert("Copied the mail");
+			}
+			</script>
 
 	</body>
 </html>
