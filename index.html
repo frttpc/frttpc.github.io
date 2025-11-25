@@ -1,444 +1,676 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>My Portfolio</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Development Portfolio - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar"><img src="images/pp.jfif" alt="" /></a>
-					<h1><strong>Fırat Topcu.</strong><br/>
-					Here is <strong>My Portfolio</strong> so that you can learn more
-					about me and my projects.</h1>
-				</div>
-			</header>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0e27;
+        }
 
-		<!-- Main -->
-			<div id="main">
+        /* Preview Controls */
+        .preview-controls {
+            background: #1a1f3a;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #2d3561;
+        }
 
-				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h2>About Me</h2>
-						</header>
-						<p>Upbeat person who loves creative thinking. Love playing and making video games. Excellent critical thinking
-							and problem solving skills. Possibilities and opportunities always excites me and I love collaborating in a team where we can all improve one another. I believe 
-							game making is much like art where all parts should be detailed and well-thought while leaving a space for creativity and improvisation.</p>
-					</section>
+        .preview-button {
+            background: #2d3561;
+            color: white;
+            border: 2px solid #6c63ff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
 
-				<!-- Two -->
-					<section id="two">
-						<h2>Recent Work</h2>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<a class="image fit" style="max-width: 50%; height: auto;" ><img src="images/TicTacToe Gameplay Demo.png" alt="" /></a>
-								<h3>TicTacToe with a Twist</h3>
-								<p style="margin: 0 0 1em 0 ;">This is my first independent local 2-player mobile game project that haevily works on UI. Simply tictactoe with rounds and a different rule.</p>
-								<ul class="actions">
-									<li><a href="https://github.com/frttpc/TicTacToe-Prototype" class="button">Go to Repository</a></li>
-								</ul>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a class="image fit" ><img src="images/2D Prot.png" alt="" /></a>
-								<h3>2D Top Down Shooter Prototype</h3>
-								<p style="margin: 0 0 1em 0 ;">My first attempt on learning and implementing top down shooter mechanics with 2D lights, aiming, cinemachine and more, on a inheretance and 
-									singleton based game design pattern with a little bit of fear elements in it. </p>
-								<ul class="actions">
-									<li><a href="https://github.com/frttpc/2D-Shooter-Prototype" class="button">Go to Repository</a></li>
-								</ul>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a class="image fit" ><img src="images/Pingu vs Pengu Gameplay SS.png" alt="" /></a>
-								<h3>Party Games Prototype</h3>
-								<p style="margin: 0 0 1em 0 ;">My first attempt on local multiplayer using new input system. Game has physics
-								and fluid movement mechanics. </p>
-								<ul class="actions">
-									<li><a href="https://github.com/frttpc/Party-Games-Prot" class="button">Go to Repository</a></li>
-								</ul>
-								<iframe frameborder="0" src="https://itch.io/embed/1995357?linkback=true&amp;bg_color=2b0143&amp;fg_color=ffffff&amp;link_color=b63be2&amp;border_color=000000" width="380" height="167"><a href="https://frttpc.itch.io/pingu-vs-pengu">Pingu vs Pengu by frttpc</a></iframe>
-							</article>
-						</div>
-					</section>
+        .preview-button:hover {
+            background: #6c63ff;
+            transform: translateY(-2px);
+        }
 
-				<!-- Three -->
-					<section id="three">
-						<h2>Get In Touch</h2>
-						<p>Please leave you name, email address and you message so that I can return back to you as soon as I can. Or you can copy my email address by clicking on the
-							<a onclick="CopyMail()" class="icon solid fa-envelope" style="color: rgb(71, 71, 71); margin: 0 0.5em 0 0.5em;">
-							</a> icon. </p>
-						<!-- <div class="row">
-							<div class="col-12 col-12-small">
-								<form method="post" action="#">
-									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-									</div>
-								</form>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div>
-						</div> -->
-					</section>
+        .preview-button.active {
+            background: #6c63ff;
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.5);
+        }
 
-				<!-- Four -->
-				<!--
-					<section id="four">
-						<h2>Elements</h2>
+        .preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 60px);
+            padding: 20px;
+        }
 
-						<section>
-							<h4>Text</h4>
-							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-							<hr />
-							<header>
-								<h4>Heading with a Subtitle</h4>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-							<header>
-								<h5>Heading with a Subtitle</h5>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-							<hr />
-							<h2>Heading Level 2</h2>
-							<h3>Heading Level 3</h3>
-							<h4>Heading Level 4</h4>
-							<h5>Heading Level 5</h5>
-							<h6>Heading Level 6</h6>
-							<hr />
-							<h5>Blockquote</h5>
-							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-							<h5>Preformatted</h5>
-							<pre><code>i = 0;
+        .preview-frame {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
 
-while (!deck.isInOrder()) {
-print 'Iteration ' + i;
-deck.shuffle();
-i++;
-}
+        /* Different screen sizes */
+        .preview-frame.mobile {
+            width: 375px;
+            height: 667px;
+        }
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-						</section>
+        .preview-frame.tablet {
+            width: 768px;
+            height: 1024px;
+        }
 
-						<section>
-							<h4>Lists</h4>
-							<div class="row">
-								<div class="col-6 col-12-xsmall">
-									<h5>Unordered</h5>
-									<ul>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Sagittis adipiscing lorem eleifend.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ul>
-									<h5>Alternate</h5>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Sagittis adipiscing lorem eleifend.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<h5>Ordered</h5>
-									<ol>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Etiam vel felis at lorem sed viverra.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Etiam vel felis at lorem sed viverra.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ol>
-									<h5>Icons</h5>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<h5>Actions</h5>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Default</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions small">
-								<li><a href="#" class="button primary small">Small</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<div class="row">
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary small">Small</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary fit">Default</a></li>
-										<li><a href="#" class="button fit">Default</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary small fit">Small</a></li>
-										<li><a href="#" class="button small fit">Small</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
+        .preview-frame.desktop {
+            width: 1200px;
+            height: 800px;
+        }
 
-						<section>
-							<h4>Table</h4>
-							<h5>Default</h5>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
+        .preview-frame.full {
+            width: 100%;
+            height: calc(100vh - 100px);
+        }
 
-							<h5>Alternate</h5>
-							<div class="table-wrapper">
-								<table class="alt">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-						</section>
+        .preview-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-						<section>
-							<h4>Buttons</h4>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Primary</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button large">Large</a></li>
-								<li><a href="#" class="button">Default</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<ul class="actions fit">
-								<li><a href="#" class="button primary fit">Fit</a></li>
-								<li><a href="#" class="button fit">Fit</a></li>
-							</ul>
-							<ul class="actions fit small">
-								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
-								<li><a href="#" class="button fit small">Fit + Small</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-							</ul>
-							<ul class="actions">
-								<li><span class="button primary disabled">Primary</span></li>
-								<li><span class="button disabled">Default</span></li>
-							</ul>
-						</section>
+        /* Portfolio Styles */
+        .portfolio-wrapper {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-						<section>
-							<h4>Form</h4>
-							<form method="post" action="#">
-								<div class="row gtr-uniform gtr-50">
-									<div class="col-6 col-12-xsmall">
-										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<select name="demo-category" id="demo-category">
-											<option value="">- Category -</option>
-											<option value="1">Manufacturing</option>
-											<option value="1">Shipping</option>
-											<option value="1">Administration</option>
-											<option value="1">Human Resources</option>
-										</select>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-										<label for="demo-priority-low">Low Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-normal" name="demo-priority">
-										<label for="demo-priority-normal">Normal Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-high" name="demo-priority">
-										<label for="demo-priority-high">High Priority</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-copy" name="demo-copy">
-										<label for="demo-copy">Email me a copy of this message</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-human" name="demo-human" checked>
-										<label for="demo-human">I am a human and not a robot</label>
-									</div>
-									<div class="col-12">
-										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
-						</section>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-						<section>
-							<h4>Image</h4>
-							<h5>Fit</h5>
-							<div class="box alt">
-								<div class="row gtr-50 gtr-uniform">
-									<div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-								</div>
-							</div>
-							<h5>Left &amp; Right</h5>
-							<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-							<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-						</section>
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            padding: 40px 20px 20px 20px;
+        }
 
-					</section>
-				-->
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
 
-			</div>
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            color: #6c63ff;
+        }
 
-		<!-- Footer -->
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="https://github.com/frttpc" target="_blank" class="icon brands fa-github"></a></li>
-						<li><a href="https://www.linkedin.com/in/f%C4%B1rat-topcu/" target="_blank" class="icon brands fa-linkedin"></a></li>
-						<li class=""><a onclick="CopyMail()" class="icon solid fa-envelope tooltiptext"></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
+        .tabs-container {
+            background: rgba(45, 53, 97, 0.3);
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(108, 99, 255, 0.2);
+        }
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        .tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            overflow-x: auto;
+        }
 
-			<script>
-			function CopyMail() {
-				var mail = "frttpc97@gmail.com";
-				navigator.clipboard.writeText(mail);
-			  
-				// Alert the copied text
-				alert("Copied the mail");
-			}
-			</script>
+        .tab-button {
+            background: rgba(45, 53, 97, 0.6);
+            color: white;
+            border: 2px solid transparent;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
 
-	</body>
+        .tab-button:hover {
+            background: rgba(45, 53, 97, 0.8);
+            border-color: #6c63ff;
+            transform: translateY(-2px);
+        }
+
+        .tab-button.active {
+            background: #6c63ff;
+            color: white;
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.4);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(108, 99, 255, 0.3);
+            border-color: #6c63ff;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #2d3561 0%, #1a1f3a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-content {
+            padding: 25px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            color: #1a1f3a;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .project-type {
+            display: inline-block;
+            background: #2d3561;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .project-link {
+            flex: 1;
+            min-width: 120px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .github-link {
+            background: #24292e;
+            color: white;
+        }
+
+        .github-link:hover {
+            background: #000;
+            transform: translateY(-2px);
+        }
+
+        .store-link {
+            background: #6c63ff;
+            color: white;
+        }
+
+        .store-link:hover {
+            background: #5a52d5;
+            transform: translateY(-2px);
+        }
+
+        .demo-link {
+            background: #2d3561;
+            color: white;
+        }
+
+        .demo-link:hover {
+            background: #1a1f3a;
+            transform: translateY(-2px);
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 0 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 2px solid #6c63ff;
+        }
+
+        .about-section h2 {
+            color: #2d3561;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-section h3 {
+            color: #1a1f3a;
+            font-size: 1.5rem;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #6c63ff;
+            padding-left: 15px;
+        }
+
+        .about-section p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #2d3561 0%, #1a1f3a 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-item:hover {
+            border-color: #6c63ff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-block;
+            background: #2d3561;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .contact-link:hover {
+            background: #6c63ff;
+            border-color: #6c63ff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 99, 255, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            padding: 20px;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+
+            .project-links {
+                flex-direction: column;
+            }
+
+            .project-link {
+                min-width: 100%;
+            }
+
+            .about-section {
+                padding: 25px;
+                margin: 0 10px;
+            }
+
+            .about-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .about-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="preview-controls">
+        <button class="preview-button active" onclick="changeSize('mobile')">📱 Mobile (375px)</button>
+        <button class="preview-button" onclick="changeSize('tablet')">📱 Tablet (768px)</button>
+        <button class="preview-button" onclick="changeSize('desktop')">💻 Desktop (1200px)</button>
+        <button class="preview-button" onclick="changeSize('full')">🖥️ Full Screen</button>
+    </div>
+
+    <div class="preview-container">
+        <div class="preview-frame mobile" id="previewFrame">
+            <div class="portfolio-wrapper">
+                <div class="container">
+                    <header>
+                        <h1>🎮 Game Development Portfolio</h1>
+                        <p>Unity & C# Developer</p>
+                    </header>
+
+                    <div class="tabs-container">
+                        <div class="tabs">
+                            <button class="tab-button active" onclick="switchTab('games')">Games</button>
+                            <button class="tab-button" onclick="switchTab('projects')">Template Projects</button>
+                            <button class="tab-button" onclick="switchTab('about')">About Me</button>
+                        </div>
+                    </div>
+
+                    <div id="games" class="tab-content active">
+                        <div class="projects-grid" id="gamesGrid"></div>
+                    </div>
+
+                    <div id="projects" class="tab-content">
+                        <div class="projects-grid" id="projectsGrid"></div>
+                    </div>
+
+                    <div id="about" class="tab-content">
+                        <div class="about-section">
+                            <h2>About Me</h2>
+                            <p>
+                                Passionate Unity game developer specializing in mobile game development with C#. 
+                                I focus on creating high-performance, scalable solutions with optimal effort-to-performance ratios.
+                            </p>
+                            
+                            <h3>Technical Skills</h3>
+                            <div class="skills-grid">
+                                <div class="skill-item">Unity Engine</div>
+                                <div class="skill-item">C# Programming</div>
+                                <div class="skill-item">Mobile Development</div>
+                                <div class="skill-item">Performance Optimization</div>
+                                <div class="skill-item">Design Patterns</div>
+                                <div class="skill-item">Object Pooling</div>
+                                <div class="skill-item">UI/UX Design</div>
+                                <div class="skill-item">Game Architecture</div>
+                            </div>
+
+                            <h3>Development Approach</h3>
+                            <p>
+                                I prioritize clean, maintainable code using proven design patterns like Singleton for manager classes. 
+                                My focus is always on finding the most efficient solution that balances performance with development effort.
+                            </p>
+
+                            <h3>Connect With Me</h3>
+                            <div class="contact-links">
+                                <a href="https://github.com/yourusername" class="contact-link" target="_blank">GitHub</a>
+                                <a href="https://linkedin.com/in/yourusername" class="contact-link" target="_blank">LinkedIn</a>
+                                <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <footer>
+                        <p>&copy; 2024 Game Development Portfolio. Built with passion.</p>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const games = [
+            {
+                title: "Endless Runner 3D",
+                type: "Mobile Game",
+                description: "High-performance endless runner with procedural generation and optimized pooling system. Features dynamic difficulty and power-up system.",
+                image: null,
+                icon: "🏃",
+                links: {
+                    github: "https://github.com/yourusername/endless-runner",
+                    store: "https://play.google.com/store/apps/details?id=com.yourcompany.endlessrunner"
+                }
+            },
+            {
+                title: "Puzzle Match Game",
+                type: "Mobile Game",
+                description: "Match-3 puzzle game with smooth animations, particle effects, and performance-optimized grid system for mobile devices.",
+                image: null,
+                icon: "🧩",
+                links: {
+                    github: "https://github.com/yourusername/puzzle-match",
+                    store: "https://apps.apple.com/app/puzzle-match/id123456789"
+                }
+            },
+            {
+                title: "Tower Defense",
+                type: "Mobile Game",
+                description: "Strategic tower defense with multiple tower types, enemy AI, and wave management system. Optimized for 60fps on mobile.",
+                image: null,
+                icon: "🏰",
+                links: {
+                    github: "https://github.com/yourusername/tower-defense",
+                    store: "https://play.google.com/store/apps/details?id=com.yourcompany.towerdefense"
+                }
+            }
+        ];
+
+        const templateProjects = [
+            {
+                title: "Inventory System Template",
+                type: "Template Project",
+                description: "Reusable inventory management system with drag-drop functionality, item stacking, and save/load functionality using Singleton pattern.",
+                image: null,
+                icon: "🎒",
+                links: {
+                    github: "https://github.com/yourusername/inventory-system",
+                    demo: "https://yourusername.github.io/inventory-demo"
+                }
+            },
+            {
+                title: "Object Pooling Manager",
+                type: "Template Project",
+                description: "Generic object pooling solution for Unity using Singleton pattern. Reduces GC pressure and improves performance significantly.",
+                image: null,
+                icon: "♻️",
+                links: {
+                    github: "https://github.com/yourusername/object-pooling"
+                }
+            },
+            {
+                title: "Audio Manager",
+                type: "Template Project",
+                description: "Centralized audio management system with music and SFX control, volume mixing, and audio pooling for mobile optimization.",
+                image: null,
+                icon: "🔊",
+                links: {
+                    github: "https://github.com/yourusername/audio-manager"
+                }
+            },
+            {
+                title: "Save System",
+                type: "Template Project",
+                description: "Flexible save/load system with JSON serialization, encryption support, and cloud save integration for mobile games.",
+                image: null,
+                icon: "💾",
+                links: {
+                    github: "https://github.com/yourusername/save-system"
+                }
+            }
+        ];
+
+        function createProjectCard(project) {
+            const card = document.createElement('div');
+            card.className = 'project-card';
+            
+            const imageSection = project.image 
+                ? `<img src="${project.image}" alt="${project.title}">`
+                : project.icon;
+            
+            let linksHTML = '';
+            if (project.links.github) {
+                linksHTML += `<a href="${project.links.github}" class="project-link github-link" target="_blank">GitHub</a>`;
+            }
+            if (project.links.store) {
+                linksHTML += `<a href="${project.links.store}" class="project-link store-link" target="_blank">Store</a>`;
+            }
+            if (project.links.demo) {
+                linksHTML += `<a href="${project.links.demo}" class="project-link demo-link" target="_blank">Demo</a>`;
+            }
+            
+            card.innerHTML = `
+                <div class="project-image">${imageSection}</div>
+                <div class="project-content">
+                    <h2 class="project-title">${project.title}</h2>
+                    <span class="project-type">${project.type}</span>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-links">
+                        ${linksHTML}
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        function renderProjects() {
+            const gamesGrid = document.getElementById('gamesGrid');
+            const projectsGrid = document.getElementById('projectsGrid');
+            
+            games.forEach(game => {
+                gamesGrid.appendChild(createProjectCard(game));
+            });
+            
+            templateProjects.forEach(project => {
+                projectsGrid.appendChild(createProjectCard(project));
+            });
+        }
+
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function changeSize(size) {
+            const frame = document.getElementById('previewFrame');
+            const buttons = document.querySelectorAll('.preview-button');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            frame.className = 'preview-frame ' + size;
+        }
+
+        renderProjects();
+    </script>
+</body>
 </html>
-
