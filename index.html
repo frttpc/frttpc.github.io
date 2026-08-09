@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fırat Topcu — Game Developer | Unity &amp; C#</title>
-    <meta name="description" content="Unity game developer with four titles live on Google Play. Gameplay systems, UI/UX and mobile performance in Unity and C#.">
+    <meta name="description" content="Unity game developer at Hooligan Games. Gameplay systems, UI/UX and mobile performance in Unity and C#.">
     <meta name="author" content="Fırat Topcu">
     <link rel="canonical" href="https://frttpc.github.io/">
 
@@ -15,15 +15,15 @@
     <meta property="og:site_name" content="Fırat Topcu">
     <meta property="og:url" content="https://frttpc.github.io/">
     <meta property="og:title" content="Fırat Topcu — Game Developer">
-    <meta property="og:description" content="Unity game developer with four titles live on Google Play. Gameplay systems, UI/UX and mobile performance in Unity and C#.">
+    <meta property="og:description" content="Unity game developer at Hooligan Games. Gameplay systems, UI/UX and mobile performance in Unity and C#.">
     <meta property="og:image" content="https://frttpc.github.io/images/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Fırat Topcu, Software Engineer and Game Developer, with four shipped mobile game icons.">
+    <meta property="og:image:alt" content="Fırat Topcu, Software Engineer and Game Developer, with mobile game project icons.">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Fırat Topcu — Game Developer">
-    <meta name="twitter:description" content="Unity game developer with four titles live on Google Play. Gameplay systems, UI/UX and mobile performance in Unity and C#.">
+    <meta name="twitter:description" content="Unity game developer at Hooligan Games. Gameplay systems, UI/UX and mobile performance in Unity and C#.">
     <meta name="twitter:image" content="https://frttpc.github.io/images/og-image.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,11 +104,11 @@
         }
 
         h1 {
-            font-family: var(--serif);
-            font-weight: 400;
-            font-size: clamp(3rem, 8vw, 5rem);
-            line-height: 1.02;
-            letter-spacing: -0.02em;
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: clamp(2.7rem, 7vw, 4.2rem);
+            line-height: 1.05;
+            letter-spacing: -0.035em;
             margin-bottom: 14px;
         }
 
@@ -119,9 +119,9 @@
         }
 
         .role em {
-            font-family: var(--serif);
-            font-style: italic;
-            font-size: 1.2rem;
+            font-family: var(--sans);
+            font-style: normal;
+            font-weight: 600;
             color: var(--ink);
         }
 
@@ -342,6 +342,11 @@
         .status.released {
             background: #E6F2EA;
             color: #1F6B42;
+        }
+
+        .status.softlaunch {
+            background: #E8EEF6;
+            color: #33557F;
         }
 
         .status.prototype {
@@ -652,11 +657,11 @@
                 <img src="images/profile.jpg" alt="Fırat Topcu" class="avatar">
                 <div>
                     <h1>Fırat Topcu</h1>
-                    <p class="role">Software Engineer &mdash; <em>game developer</em></p>
+                    <p class="role">Software Engineer &mdash; <em>Game Developer</em></p>
                     <p class="intro">
                         I build mobile games in Unity and C#: gameplay systems, the UI that wraps
-                        them, and the live-ops plumbing underneath. Four titles currently on
-                        Google Play with Hooligan Games.
+                        them, and the live-ops plumbing underneath. Currently working towards
+                        release on <em>Double Strategy</em> at Hooligan Games.
                     </p>
                     <div class="header-links">
                         <a class="link-btn" href="https://github.com/frttpc" target="_blank" rel="noopener">GitHub</a>
@@ -672,8 +677,8 @@
 
     <nav class="nav">
         <div class="nav-inner">
-            <button class="nav-btn active" onclick="show(this,'shipped')">Shipped Games</button>
-            <button class="nav-btn" onclick="show(this,'prototypes')">Prototypes</button>
+            <button class="nav-btn active" onclick="show(this,'shipped')">Studio Work</button>
+            <button class="nav-btn" onclick="show(this,'prototypes')">Personal Projects</button>
             <button class="nav-btn" onclick="show(this,'templates')">Template Projects</button>
             <button class="nav-btn" onclick="show(this,'earlier')">Earlier Work</button>
             <button class="nav-btn" onclick="show(this,'about')">About</button>
@@ -684,18 +689,23 @@
 
         <section id="shipped" class="panel active">
             <div class="panel-head">
-                <span class="label">Commercial work</span>
-                <h2>Shipped Games</h2>
-                <p>Titles built at Hooligan Games and released on Google Play.</p>
+                <span class="label">Hooligan Games</span>
+                <h2>Studio Work</h2>
+                <p>
+                    Production work built with the team. <em>Double Strategy</em> is in release
+                    with a publisher. The rest were built to production standard and soft launched
+                    on Google Play for publisher testing &mdash; these are the most technically
+                    involved projects I have worked on.
+                </p>
             </div>
             <div class="shipped" id="shippedList"></div>
         </section>
 
         <section id="prototypes" class="panel">
             <div class="panel-head">
-                <span class="label">Personal &amp; team prototypes</span>
-                <h2>Prototypes</h2>
-                <p>Smaller builds where I explore a mechanic or a system end to end.</p>
+                <span class="label">Solo builds</span>
+                <h2>Personal Projects</h2>
+                <p>Smaller builds where I explore a mechanic or a system end to end on my own.</p>
             </div>
             <div class="proto-grid" id="protoList"></div>
         </section>
@@ -789,9 +799,19 @@
     <script>
         const shipped = [
             {
+                title: "Double Strategy",
+                studio: "Hooligan Games",
+                status: "In Release",
+                description: "Army-building strategy game with hero collection, stat allocation and customisable deployment against enemy fortresses. Currently in release with a publisher.",
+                role: "Core developer. Built core mechanics, dynamic UI systems and card upgrade functionality in Unity and C#.",
+                tech: ["Unity", "C#", "Mobile", "Game UI/UX"],
+                image: "images/double-strategy.png",
+                store: "https://play.google.com/store/apps/details?id=com.hooligan.doublestrategy"
+            },
+            {
                 title: "Heist Defense",
                 studio: "Hooligan Games",
-                status: "Released",
+                status: "Soft Launch",
                 description: "Card-based tower defense where police units defend against waves of thieves. Deploy and merge cards, upgrade your deck, and hold the line across escalating waves.",
                 role: "Core developer. Built card behaviors, deck management and the upgrade system, plus the interactive UI, menus and HUD.",
                 tech: ["Unity", "C#", "Mobile", "Game UI/UX"],
@@ -799,19 +819,9 @@
                 store: "https://play.google.com/store/apps/details?id=com.hooligan.savemoney"
             },
             {
-                title: "Double Strategy",
-                studio: "Hooligan Games",
-                status: "Released",
-                description: "Army-building strategy game with hero collection, stat allocation and customisable deployment against enemy fortresses.",
-                role: "Core developer. Built core mechanics, dynamic UI systems and card upgrade functionality in Unity and C#.",
-                tech: ["Unity", "C#", "Mobile", "Game UI/UX"],
-                image: "images/double-strategy.png",
-                store: "https://play.google.com/store/apps/details?id=com.hooligan.doublestrategy"
-            },
-            {
                 title: "Merge Brawlers",
                 studio: "Hooligan Games",
-                status: "Released",
+                status: "Soft Launch",
                 description: "Merge combat game. Tap cards to deploy brawlers, merge matching characters and build a gang army to overwhelm the opposition.",
                 role: "Contributing developer. Supported development alongside the core team.",
                 tech: ["Unity", "C#", "Mobile"],
@@ -821,26 +831,26 @@
             {
                 title: "Aura Farmer",
                 studio: "Hooligan Games",
-                status: "Released",
+                status: "Soft Launch",
                 description: "Endless runner built around the Indonesian boat racing trend, with fast-paced arcade progression.",
                 role: "Contributing developer. Supported development alongside the core team.",
                 tech: ["Unity", "C#", "Mobile"],
                 image: "images/aura-farmer.png",
                 store: "https://play.google.com/store/apps/details?id=com.hooligan.aurafarmer"
-            }
-        ];
-
-        const prototypes = [
+            },
             {
                 title: "Fort Royal",
                 studio: "Hooligan Games",
-                status: "Team Prototype",
+                status: "Prototype",
                 description: "Grid-based strategy prototype built with the team. Shelved when the studio moved on to a concept with stronger potential.",
                 role: "Built grid-based systems and mechanics. Implemented Firebase Remote Config, and integrated IAP, notifications and localization.",
                 tech: ["Unity", "C#", "Firebase Remote Config", "Unity IAP", "Localization", "Push Notifications"],
                 image: null,
-                links: {}
-            },
+                store: null
+            }
+        ];
+
+        const prototypes = [
             {
                 title: "Pingu vs Pengu",
                 studio: "Personal project",
@@ -921,14 +931,22 @@
             ? `<div class="tags">${tech.map(t => `<span class="tag">${t}</span>`).join('')}</div>`
             : '';
 
+        const STATUS_CLASS = {
+            'In Release': 'released',
+            'Soft Launch': 'softlaunch',
+            'Prototype': 'prototype'
+        };
+
         const statusHTML = (status) => status
-            ? `<span class="dot"></span><span class="status ${status === 'Released' ? 'released' : 'prototype'}">${status}</span>`
+            ? `<span class="dot"></span><span class="status ${STATUS_CLASS[status] || 'prototype'}">${status}</span>`
             : '';
 
         function renderShipped() {
             document.getElementById('shippedList').innerHTML = shipped.map(g => `
                 <article class="ship">
-                    <div class="ship-art"><img src="${g.image}" alt="${g.title} icon" loading="lazy"></div>
+                    ${g.image
+                        ? `<div class="ship-art"><img src="${g.image}" alt="${g.title} icon" loading="lazy"></div>`
+                        : `<div class="ship-art blank">${g.title.charAt(0)}</div>`}
                     <div>
                         <h3 class="ship-title">${g.title}</h3>
                         <div class="ship-meta">
@@ -943,7 +961,9 @@
                         ${tagsHTML(g.tech)}
                     </div>
                     <div class="ship-actions">
-                        <a class="link-btn solid" href="${g.store}" target="_blank" rel="noopener">Google Play</a>
+                        ${g.store
+                            ? `<a class="link-btn solid" href="${g.store}" target="_blank" rel="noopener">Google Play</a>`
+                            : ''}
                     </div>
                 </article>
             `).join('');
