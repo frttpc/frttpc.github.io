@@ -28,17 +28,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #FAFAF7;
+            --band: #F0EDE4;
             --surface: #FFFFFF;
             --ink: #111111;
             --muted: #6B6B6B;
             --line: #E5E3DD;
             --line-strong: #CFCCC3;
 
-            --serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
             --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
 
             --page: 1080px;
@@ -63,6 +63,16 @@
             max-width: var(--page);
             margin: 0 auto;
             padding: 0 32px;
+        }
+
+        /* tinted bands frame the content area at top and bottom */
+        .band {
+            background: var(--band);
+        }
+
+        .band-bottom {
+            border-top: 1px solid var(--line-strong);
+            margin-top: 60px;
         }
 
         a {
@@ -183,10 +193,11 @@
             position: sticky;
             top: 0;
             z-index: 20;
-            background: rgba(250, 250, 247, 0.88);
-            backdrop-filter: blur(8px);
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--line-strong);
+            border-bottom: 1px solid var(--line-strong);
+            box-shadow: 0 1px 3px rgba(17, 17, 17, 0.04);
         }
 
         .nav-inner {
@@ -249,8 +260,8 @@
         }
 
         .panel-head h2 {
-            font-family: var(--serif);
-            font-weight: 400;
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 2.4rem;
             line-height: 1.1;
             letter-spacing: -0.015em;
@@ -264,7 +275,9 @@
 
         /* ---------- shipped: large editorial rows ---------- */
         .shipped {
-            border-top: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
         .ship {
@@ -272,8 +285,16 @@
             grid-template-columns: 132px 1fr auto;
             gap: 32px;
             align-items: start;
-            padding: 36px 0;
-            border-bottom: 1px solid var(--line);
+            padding: 30px 32px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .ship:hover {
+            border-color: var(--line-strong);
+            box-shadow: 0 3px 14px rgba(17, 17, 17, 0.05);
         }
 
         .ship-art {
@@ -296,14 +317,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--serif);
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 2.4rem;
             color: var(--line-strong);
         }
 
         .ship-title {
-            font-family: var(--serif);
-            font-weight: 400;
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 2rem;
             line-height: 1.15;
             letter-spacing: -0.01em;
@@ -404,19 +426,29 @@
         .proto-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 34px;
+            gap: 20px;
         }
 
         .proto {
             display: flex;
             flex-direction: column;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 20px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .proto:hover {
+            border-color: var(--line-strong);
+            box-shadow: 0 3px 14px rgba(17, 17, 17, 0.05);
         }
 
         .proto-shot {
             aspect-ratio: 16 / 10;
-            background: var(--surface);
+            background: var(--bg);
             border: 1px solid var(--line);
-            border-radius: 6px;
+            border-radius: 8px;
             overflow: hidden;
             margin-bottom: 16px;
         }
@@ -437,14 +469,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: var(--serif);
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 2.6rem;
             color: var(--line-strong);
         }
 
         .proto-title {
-            font-family: var(--serif);
-            font-weight: 400;
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 1.45rem;
             line-height: 1.2;
             margin-bottom: 4px;
@@ -466,7 +499,9 @@
 
         /* ---------- compact rows: templates + earlier ---------- */
         .rows {
-            border-top: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .row {
@@ -474,13 +509,20 @@
             grid-template-columns: 1fr auto;
             gap: 24px;
             align-items: baseline;
-            padding: 22px 0;
-            border-bottom: 1px solid var(--line);
+            padding: 22px 24px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            transition: border-color 0.2s ease;
+        }
+
+        .row:hover {
+            border-color: var(--line-strong);
         }
 
         .row h3 {
-            font-family: var(--serif);
-            font-weight: 400;
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 1.35rem;
             line-height: 1.25;
             margin-bottom: 2px;
@@ -533,16 +575,18 @@
         }
 
         .prose .lead {
-            font-family: var(--serif);
-            font-size: 1.5rem;
-            line-height: 1.4;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 1.35rem;
+            letter-spacing: -0.015em;
+            line-height: 1.45;
             color: var(--ink);
             margin-bottom: 24px;
         }
 
         .side h3 {
-            font-family: var(--serif);
-            font-weight: 400;
+            font-family: var(--sans);
+            font-weight: 700;
             font-size: 1.3rem;
             margin: 0 0 14px 0;
         }
@@ -589,9 +633,7 @@
 
         /* ---------- footer ---------- */
         footer {
-            border-top: 1px solid var(--line);
-            margin-top: 40px;
-            padding: 32px 0 56px 0;
+            padding: 34px 0 40px 0;
             display: flex;
             justify-content: space-between;
             gap: 16px;
@@ -620,7 +662,7 @@
             .ship {
                 grid-template-columns: 88px 1fr;
                 gap: 20px;
-                padding: 28px 0;
+                padding: 22px 20px;
             }
 
             .ship-art { width: 88px; height: 88px; border-radius: 18px; }
@@ -651,6 +693,7 @@
 </head>
 <body>
 
+    <div class="band">
     <div class="page">
         <header>
             <div class="identity">
@@ -673,6 +716,7 @@
                 </div>
             </div>
         </header>
+    </div>
     </div>
 
     <nav class="nav">
@@ -790,10 +834,15 @@
             </div>
         </section>
 
-        <footer>
-            <span>&copy; 2026 Fırat Topcu</span>
-            <span>Istanbul, Türkiye</span>
-        </footer>
+    </div>
+
+    <div class="band band-bottom">
+        <div class="page">
+            <footer>
+                <span>&copy; 2026 Fırat Topcu</span>
+                <span>Istanbul, Türkiye</span>
+            </footer>
+        </div>
     </div>
 
     <script>
